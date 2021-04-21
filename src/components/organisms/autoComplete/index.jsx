@@ -12,9 +12,9 @@ function AutoComplete({
     displayKey,
     searchHandler
 }) {
-    const [searchTerm, updateSearchTerm] = useState(""),
+    const [searchTerm, setSearchTerm] = useState(""),
         [activeIndex, setActiveIndex] = useState(),
-        [showList, updateShowList] = useState(false),
+        [showList, setShowList] = useState(false),
         dispatch = useDispatch(),
         maxIndex = Array.isArray(suggestedValues) ? suggestedValues.length - 1 : 0;
 
@@ -39,8 +39,8 @@ function AutoComplete({
      * @param {Object/String} item 
      */
     function itemSelected(item) {
-        updateShowList(false);
-        updateSearchTerm(typeof item === "object" ? item[displayKey] : item);
+        setShowList(false);
+        setSearchTerm(typeof item === "object" ? item[displayKey] : item);
         dispatch({ type: "CLEAR_CHARACTERS" });
     }
 
@@ -51,8 +51,8 @@ function AutoComplete({
      */
     function onChangeHandler(event) {
         const { value } = event.target;
-        updateShowList(Boolean(value));
-        updateSearchTerm(value);
+        setShowList(Boolean(value));
+        setSearchTerm(value);
         searchHandler(value);
     }
 
@@ -76,7 +76,7 @@ function AutoComplete({
                     listClass="suggestion-item"
                     activeIndex={activeIndex}
                     itemClickHandler={itemSelected}
-                    itemHoverHandler={(index) => setActiveIndex(index)}
+                    itemHoverHandler={setActiveIndex}
                 />
             }
         </div>
