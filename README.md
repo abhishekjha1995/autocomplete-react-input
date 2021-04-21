@@ -4,16 +4,16 @@ This project contains an autocomplete input component which could be used in any
 
 ```jsx
 <AutoComplete
-    id="characterName"
-    type="text"
-    iconClass="fa fa-search"
-    searchHandler={debounce(searchHandler, 300)}
-    suggestedValues={characters || []}
-    displayKey="name"
+    id={id}
+    type={inputType}
+    iconClass={fontAwesomeClass}
+    searchHandler={searchHandler}
+    suggestedValues={suggestionArray}
+    displayKey={suggestionKey}
 />
 ```
 
-Working demo [here]()
+Working demo [here](https://autocomplete-react-input.vercel.app/)
 
 ## Available Scripts
 
